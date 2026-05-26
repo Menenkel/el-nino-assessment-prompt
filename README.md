@@ -160,8 +160,8 @@ Suggestions welcome via Issues. Particularly useful contributions:
 
 ## License
 
-Released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-Free to use, adapt, and share with attribution.
+Released under the [MIT License](./LICENSE).
+Free to use, modify, and distribute.
 
 ---
 
