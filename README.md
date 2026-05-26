@@ -1,6 +1,3 @@
-# el-nino-assessment-prompt
-A structured LLM prompt for generating decision-grade El Niño regional impact assessments
-
 # El Niño Regional Assessment Prompt
 
 A structured prompt for large language models (LLMs) that generates
@@ -15,19 +12,22 @@ meteorology degree.
 
 ## What it produces
 
-A ten-section regional brief covering:
+An eleven-section regional brief covering:
 
 1. **Current El Niño status** — plain-language forecast with confidence indicators
 2. **Regional signal** — drought, wetter-than-normal, or mixed, with confidence level
 3. **Sector impacts** — agriculture, food security, water, health, disaster financing
-4. **Historical El Niño impacts** — documented past events with sources and years
-5. **Anticipatory action window** — decision deadline and what must happen before it
-6. **Watch items** — what to monitor and where
-7. **Interactive HTML charts** — maize/harvest trends, seasonal calendar overlap,
+4. **Cascading and compounding risks** — how climate failures chain into each other,
+   pre-existing non-climate stressors that amplify impact, transboundary risks,
+   and the resilience levers available to decision-makers
+5. **Historical El Niño impacts** — documented past events with sources and years
+6. **Anticipatory action window** — decision deadline and what must happen before it
+7. **Watch items** — what to monitor and where
+8. **Interactive HTML charts** — maize/harvest trends, seasonal calendar overlap,
    sortable event history, sector risk matrix
-8. **Reliability check** — built-in audit of sources, unsourced claims, and weakest findings
-9. **Verify before acting** — checklist of primary sources to confirm before acting
-10. **Numbered source list** — every source with organisation, date, and URL
+9. **Reliability check** — built-in audit of sources, unsourced claims, and weakest findings
+10. **Verify before acting** — checklist of primary sources to confirm before acting
+11. **Numbered source list** — every source with organisation, date, and URL
 
 All key findings carry inline confidence labels (`[HIGH]` / `[MEDIUM]` / `[LOW]`)
 based on source agreement, historical consistency, and forecast uncertainty.
@@ -91,6 +91,15 @@ an inline `[HIGH]`, `[MEDIUM]`, or `[LOW]` label based on three factors:
 number of independent sources agreeing, consistency of the historical record,
 and whether the spring predictability barrier applies.
 
+**Cascading and non-climate risks are explicit, not implied.** The worst
+El Niño outcomes are rarely pure climate stories. The prompt requires the
+model to surface pre-existing non-climate stressors (economic, political,
+infrastructural), trace how sector failures chain into each other over time,
+identify transboundary risks that reduce regional coping options, and name
+the non-climate resilience levers available to decision-makers. Zimbabwe
+2023/24 — a moderate Pacific signal that caused near-record damage — is the
+standing illustration of why this matters.
+
 ---
 
 ## Primary sources referenced by the prompt
@@ -109,26 +118,33 @@ and whether the spring predictability barrier applies.
 
 ## Known limitations
 
+- **Cascading risk chains are illustrative, not modelled.** Section 4
+  asks the model to describe plausible cascades and non-climate amplifiers,
+  but these are narrative reasoning from sourced evidence — not quantitative
+  systems models. Treat them as structured hypotheses to test with local
+  experts, not as predictions.
+
 - **Strength uncertainty is real.** The prompt correctly labels El Niño
   strength forecasts as `[LOW]` confidence because no strength category
   typically exceeds ~37% probability. Do not build operational plans around
   a specific strength scenario.
 
-- **Model self-audit has limits.** The Reliability Check in Section 8 flags
+- **Model self-audit has limits.** The Reliability Check in Section 9 flags
   missing citations and obvious hedging — but cannot catch confident factual
   errors. A model that retrieved a wrong figure from a real source will not
-  flag it. The Section 9 checklist and a regional specialist review remain
+  flag it. The Section 10 checklist and a regional specialist review remain
   essential for decision-grade use.
 
 - **Web search quality varies.** The prompt instructs the model to search
   for live data, but search results depend on the model and session. Always
-  check source dates in Section 10 — if the NOAA or IRI issuance cited is
+  check source dates in Section 11 — if the NOAA or IRI issuance cited is
   older than 60 days, re-run or verify manually.
 
 - **1997/98 is a standing reminder.** The strongest El Niño on record
   produced only minor impacts in Zimbabwe. Pacific signal strength does not
   guarantee local damage. Local vulnerability, timing of dry spells, and
-  pre-existing food security conditions modify outcomes significantly.
+  pre-existing non-climate conditions — now explicitly surfaced in Section 4
+  — modify outcomes as much as the ocean temperature signal itself.
 
 ---
 
@@ -144,6 +160,7 @@ It includes all four charts and the complete ten-section brief.
 
 | Version | Date | Changes |
 |---|---|---|
+| v1.1 | May 2026 | Added Section 4: Cascading and Compounding Risks — pre-existing non-climate stressors, sector failure chains, transboundary risks, resilience levers |
 | v1.0 | May 2026 | Initial release — all sectors, interactive HTML charts, confidence indicators, reliability check |
 
 ---
